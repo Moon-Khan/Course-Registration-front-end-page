@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Course Registration Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <style>
+        * {
+            margin: 0%;
+            padding: 0%;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        .head {
+            border: 2px solid #12B28E;
+            text-align: center;
+            background-color: #12B28E;
+            height: 300px;
+
+        }
+
+        .head h1 {
+            color: white;
+            position: relative;
+            top: 60px;
+            font-size: 70px;
+            font-family: 'Fira Sans', sans-serif;
+        }
+
+        .sect {
+            margin: auto;
+            max-width: 1000px;
+            height: 700px;
+            background-color: white;
+            position: relative;
+            top: -100px;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        form div {
+            margin: 5px;
+            display: inline-block;
+        }
+
+        span {
+            color: red;
+        }
+
+        .div1 {
+            position: relative;
+            top: 110px;
+            font-size: 22px;
+            left: 140px;
+        }
+
+        .div2 {
+            position: relative;
+            top: 110px;
+            font-size: 22px;
+            left: 240px;
+        }
+
+        .div3 {
+            position: absolute;
+            top: 300px;
+            font-size: 22px;
+            left: 140px;
+        }
+
+        .div4 {
+            position: absolute;
+            top: 300px;
+            font-size: 22px;
+            left: 560px;
+        }
+
+        .div5 {
+            position: absolute;
+            top: 400px;
+            font-size: 22px;
+            left: 140px;
+
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            position: absolute;
+            top: 550px;
+            font-size: 22px;
+            left: 370px;
+            margin: auto;
+            width: 270px;
+            height: 52px;
+            background-color: #25b697;
+            color: white;
+            font-size: 25px;
+            font-family: 'Poppins', sans-serif;
+            
+        }
+
+        .btn:hover {
+            background-color: #00cca0;
+        }
+
+
+        .input_box {
+            width: 280px;
+            height: 30px;
+            padding: 2px 10px;
+            font-size: 20px;
+
+        }
+
+        div h4 {
+            font-weight: 100;
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        #error {
+            text-align: center;
+            position: relative;
+            margin: auto;
+            width: 600px;
+            top: 30px;
+            height: 90px;
+            
+
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <header class="head">
+        <h1>Course Registration </h3>
+    </header>
+ 
+    <!-- FOR ERROR AND SUBMISSION DISPLAY -->
+
+    <section class="sect">
+
+        <div id="error">
+            <p id="text_"></p>
+            <p id="id"></p>
+            <p id="name"></p>
+
+        </div>
+
+    <!-- FORM -->
+        <form name="form" action="" onsubmit="return validate()">
+
+            <div class="div1">
+                <!-- required -->
+                <h4>Student Name <span>*</span></h4>
+                <input id="std_name" class="input_box" name="st_name" type="text" >
+            </div>
+
+            <div class="div2">
+                <h4>Student ID <span>*</span></h4>
+                <input id="std_id" class="input_box" name="st_id" type="text">
+            </div>
+
+            <div class="div3">
+                <h4>Email ID <span>*</span></h4>
+                <input id="email_id" class="input_box" name="email" type="email" required>
+            </div>
+
+
+            <div class="div4">
+                <h4>Course Name <span>*</span></h4>
+                <input id="course_name" class="input_box" name="course_name" type="text" >
+            </div>
+
+            <div class="div5">
+                <h4>Course ID <span>*</span></h4>
+                <input id="course_id" class="input_box" name="course_id" type="text" >
+            </div>
+
+
+            <button class="btn" type="submit"> Submit</button>
+
+
+        </form>
+    </section>
+
+
+<!-- JAVA SCRIPT -->
+    <script>
+
+        // FUNTION FOR ERROR DISPLAYING
+
+        function putError(error, type) {
+            let temp = document.getElementById("name");
+            let x = document.getElementById("id");
+            let y_ = document.getElementById("text_");
+            let z_ = document.getElementById("error");
+
+            z_.style.backgroundColor = 'red';
+            z_.style.color = 'white';
+            y_.innerHTML = "<h1> Errors </h1>";
+
+            if (type == "NameCourse") {
+                temp.innerHTML = error;
+            }
+            else if (type == "StdCourseID") {
+                x.innerHTML = error;
+            }
+        }
+
+        // FUNCTION TO CHECK VALIDATION
+
+        function validate() {
+
+            // FORM ELEMENTS SELECTED
+
+            var st_name = document.forms["form"]["st_name"].value;
+            var st_id = document.forms["form"]["st_id"].value;
+            var email_id = document.forms["form"]["email"].value;
+            var course_name = document.forms["form"]["course_name"].value;
+            var course_id = document.forms["form"]["course_id"].value;
+
+            let y_ = document.getElementById("text_");
+            let z_ = document.getElementById("error");
+
+            let temp = document.getElementById("name");
+            let x = document.getElementById("id");
+
+
+            // CHECK EMPTY BOXES VALIDATION
+
+            if (st_id == "" || st_name == "" || email_id == "" || course_id == "" || course_name == "") {
+                alert("Please Fill All TextBoxes!");
+                return false;
+            }
+
+            // NAME BOXES VALIDATION
+
+            let s_nameExp = new RegExp('^[A-Za-z]+$');
+            let c_nameExp = new RegExp('^[A-Za-z]+$');
+
+            if (!(s_nameExp.test(st_name) && c_nameExp.test(course_name))) {
+                putError("Only alphabets allowed for name", "NameCourse");
+            }
+            else {
+                temp.innerHTML = "";
+                if (x.innerHTML == "") {
+                    z_.style.backgroundColor = 'white';
+                    y_.innerHTML = "";
+                }
+            }
+
+            // ID BOXES VALIDATION
+
+            let s_idExp = new RegExp('^[a-zA-Z0-9_-]*$');
+            let c_idExp = new RegExp('^[a-zA-Z0-9_-]*$');
+
+            if (!(s_idExp.test(st_id) && c_idExp.test(course_id))) {
+                putError("Only lower case, upper case, hyphen and underscore are allowed for id", "StdCourseID");
+            }
+            else {
+                x.innerHTML = "";
+                if (temp.innerHTML == "") {
+                    z_.style.backgroundColor = 'white';
+                    y_.innerHTML = "";
+                }
+            }
+
+            // FOR SUBMISSION MESSAGE DISPLAY
+
+            if (s_nameExp.test(st_name) && c_nameExp.test(course_name) && (s_idExp.test(st_id) && c_idExp.test(course_id))) {
+                z_.style.backgroundColor = '#2FDD92';
+                y_.innerHTML = "Submitted";
+                y_.style.color = 'white';
+                y_.style.position = 'relative';
+                y_.style.top = '30px';
+                y_.style.fontFamily = 'sans-serif';
+            }
+
+            return false;
+        }
+
+    </script>
+
+</body>
+
+</html>
